@@ -3,7 +3,7 @@ import flight2 from "../assets/74c6904520aa18e9eab95d505570cdaa48b36dfd.png";
 import flight3 from "../assets/36feb5c12866dc05000fc3c7955e9ad614e0c9ef.png";
 import flight4 from "../assets/781eec77322a53e57a7e378e1868923b26ab9efd.png";
 import flight5 from "../assets/5262252d8ad60df9f20cd93dfee5ecb628cbbf84.png";
-import flight6 from "../assets/0781a61e136ac839fbe7fde4667bac57be8ac5f8.png";
+import flight6 from "../assets/GRU-MCO.avif";
 import flight7 from "../assets/e9ca89132b72f3b30fd96bdd268c3b0cfffaaa63.png";
 import { Plane, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
