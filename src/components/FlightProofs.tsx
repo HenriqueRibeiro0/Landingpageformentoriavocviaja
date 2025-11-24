@@ -1,10 +1,10 @@
-import flight1 from "figma:asset/c708a1b4c250a8c7e091c006a2166a75c639c087.png";
-import flight2 from "figma:asset/74c6904520aa18e9eab95d505570cdaa48b36dfd.png";
-import flight3 from "figma:asset/36feb5c12866dc05000fc3c7955e9ad614e0c9ef.png";
-import flight4 from "figma:asset/781eec77322a53e57a7e378e1868923b26ab9efd.png";
-import flight5 from "figma:asset/5262252d8ad60df9f20cd93dfee5ecb628cbbf84.png";
-import flight6 from "figma:asset/0781a61e136ac839fbe7fde4667bac57be8ac5f8.png";
-import flight7 from "figma:asset/e9ca89132b72f3b30fd96bdd268c3b0cfffaaa63.png";
+import flight1 from "../assets/VCP-LIS.avif";   // Lisboa
+import flight2 from "../assets/REC-FEN.avif";   // Fernando de Noronha
+import flight3 from "../assets/GRU-MAD.avif";   // Madrid
+import flight4 from "../assets/CGH-POA.avif";   // Gramado
+import flight5 from "../assets/NVT-SSA.avif";   // Salvador
+import flight6 from "../assets/GRU-MCO.avif";   // Orlando
+import flight7 from "../assets/GRU-MIA.avif";   // Miami
 import { Plane } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay@8.6.0";
