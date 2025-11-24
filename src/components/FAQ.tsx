@@ -18,7 +18,7 @@ export function FAQ() {
     },
     {
       question: "Consigo realmente viajar gastando menos?",
-      answer: "Sim! Com as estratégias certas, você pode viajar pagando apenas as taxas aeroportuárias (que geralmente são bem menores que o valor total da passagem). Já ajudei mais de 800 pessoas a realizarem viagens que pareciam impossíveis."
+      answer: "Sim! Com as estratégias certas, você pode viajar pagando apenas as taxas aeroportuárias (que geralmente são menos de 10% do valor original da passagem)."
     },
     {
       question: "Quanto tempo leva pra acumular milhas?",
@@ -30,7 +30,7 @@ export function FAQ() {
     },
     {
       question: "E se eu tiver dúvidas depois da mentoria?",
-      answer: "As mentorias ficam gravadas pra você reassistir sempre que precisar. Além disso, durante o processo você pode me acionar pelo WhatsApp com dúvidas pontuais."
+      answer: "As mentorias ficam gravadas pra você reassistir sempre que precisar. Além disso, você terá suporte diretamente comigo pelo WhatsApp com dúvidas pontuais durante 6 meses."
     },
     {
       question: "Como faço pra fechar a mentoria?",

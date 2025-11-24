@@ -1,6 +1,7 @@
-import whatsapp1 from "../assets/testemunho-rafa.avif";
-import whatsapp2 from "../assets/testemunho-ricardo.avif";
-import whatsapp3 from "../assets/testemunho-helio.avif";
+import whatsapp1 from "figma:asset/d9f0a6d687abaf5249d70f7a125e12f18f160efd.png";
+import whatsapp2 from "figma:asset/97ba1bbc5d3a9b77fe665a538531fcee0d74724a.png";
+import whatsapp3 from "figma:asset/34cdbea8a66b496b6874a673688fb7d90a35b5e6.png";
+import { Star, Quote } from "lucide-react";
 
 export function TestimonialsSection() {
   const testimonials = [
@@ -28,10 +29,15 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section id="depoimentos" className="py-16 lg:py-24 bg-[#EDE7DF]">
+    <section id="depoimentos" className="py-16 lg:py-24 bg-gradient-to-b from-white to-[#EDE7DF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 lg:mb-12">
+          <div className="inline-flex items-center justify-center gap-1 mb-4">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Star key={star} className="w-5 h-5 sm:w-6 sm:h-6 fill-[#CF5100] text-[#CF5100]" />
+            ))}
+          </div>
           <h2 className="font-headline text-[#224236] mb-3" style={{ fontWeight: 800, fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}>
             Veja o que meus alunos falam
           </h2>
@@ -42,9 +48,12 @@ export function TestimonialsSection() {
 
         {/* Video Testimonial - Denilson */}
         <div className="max-w-5xl mx-auto mb-12 lg:mb-16">
-          <div className="relative">
+          <div className="relative group">
+            {/* Decorative background gradient */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-[#224236] via-[#CF5100] to-[#224236] rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
+            
             {/* Video Container with Border */}
-            <div className="bg-[#224236] rounded-2xl p-3 shadow-lg">
+            <div className="relative bg-gradient-to-br from-[#224236] to-[#224236]/80 rounded-2xl p-4 shadow-2xl">
               <div className="bg-black rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
                 <iframe
                   className="w-full h-full"
@@ -57,11 +66,12 @@ export function TestimonialsSection() {
             </div>
 
             {/* Video Info Below */}
-            <div className="mt-6 text-center">
-              <p className="font-headline text-[#224236]" style={{ fontWeight: 700, fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
+            <div className="relative mt-6 text-center bg-white rounded-2xl p-6 shadow-lg">
+              <Quote className="w-8 h-8 text-[#CF5100] mx-auto mb-3 opacity-50" />
+              <p className="font-headline text-[#224236]" style={{ fontWeight: 700, fontSize: 'clamp(1.125rem, 3vw, 1.375rem)' }}>
                 Denilson Teichmann
               </p>
-              <p className="font-body text-[#CF5100] mt-1" style={{ fontWeight: 600, fontSize: 'clamp(0.9375rem, 2.5vw, 1rem)' }}>
+              <p className="font-body text-[#CF5100] mt-2" style={{ fontWeight: 600, fontSize: 'clamp(0.9375rem, 2.5vw, 1rem)' }}>
                 Realizou o sonho de viajar com sua esposa e sua filha
               </p>
             </div>
@@ -73,27 +83,53 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-[#224236] rounded-2xl p-3 shadow-sm hover:shadow-md transition-shadow h-full"
+              className="group relative"
             >
-              <div className="bg-white rounded-xl p-3 sm:p-4 h-full flex flex-col">
-                <div className="flex-1 flex items-center justify-center mb-3 sm:mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.alt}
-                    className="w-full h-auto object-contain rounded-xl"
-                    style={{ maxHeight: '280px' }}
-                  />
-                </div>
-                <div className="text-center pt-3 border-t border-[#224236]/10">
-                  <p className="font-headline text-[#224236] mb-1" style={{ fontWeight: 700, fontSize: 'clamp(0.9375rem, 3vw, 1.125rem)' }}>
-                    {testimonial.name}
-                  </p>
-                  <p className="font-body text-[#224236]/70 mb-2" style={{ fontWeight: 500, fontSize: 'clamp(0.75rem, 2.5vw, 0.8125rem)' }}>
-                    {testimonial.details}
-                  </p>
-                  <p className="font-body text-[#CF5100]" style={{ fontWeight: 700, fontSize: 'clamp(0.8125rem, 2.8vw, 0.9375rem)' }}>
-                    {testimonial.highlight}
-                  </p>
+              {/* Decorative gradient background - more subtle */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-[#224236] via-[#CF5100]/40 to-[#224236] rounded-3xl opacity-0 group-hover:opacity-100 blur-lg transition-all duration-500" />
+              
+              <div className="relative bg-white rounded-2xl p-1 shadow-xl hover:shadow-2xl transition-all duration-300 h-full transform group-hover:-translate-y-2">
+                {/* Inner border gradient */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#224236] via-[#CF5100]/30 to-[#224236] opacity-100" />
+                
+                <div className="relative bg-white rounded-[14px] p-5 sm:p-6 h-full flex flex-col">
+                  {/* Top badge */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star key={star} className="w-4 h-4 fill-[#CF5100] text-[#CF5100]" />
+                      ))}
+                    </div>
+                    <div className="bg-[#25D366]/10 text-[#25D366] px-3 py-1 rounded-full" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
+                      WhatsApp
+                    </div>
+                  </div>
+
+                  {/* Screenshot */}
+                  <div className="flex-1 flex items-center justify-center mb-4 bg-gradient-to-br from-[#EDE7DF]/30 to-[#EDE7DF]/10 rounded-xl p-3">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.alt}
+                      className="w-full h-auto object-contain rounded-lg shadow-sm"
+                      style={{ maxHeight: '300px' }}
+                    />
+                  </div>
+                  
+                  {/* Info section */}
+                  <div className="text-center pt-4 border-t-2 border-[#224236]/10">
+                    <Quote className="w-5 h-5 text-[#CF5100] mx-auto mb-2 opacity-40" />
+                    <p className="font-headline text-[#224236] mb-1.5" style={{ fontWeight: 700, fontSize: 'clamp(1.0625rem, 3vw, 1.375rem)' }}>
+                      {testimonial.name}
+                    </p>
+                    <p className="font-body text-[#224236]/70 mb-3" style={{ fontWeight: 500, fontSize: 'clamp(0.8125rem, 2.5vw, 0.9375rem)', lineHeight: '1.5' }}>
+                      {testimonial.details}
+                    </p>
+                    <div className="inline-flex items-center justify-center bg-gradient-to-r from-[#CF5100]/10 via-[#CF5100]/20 to-[#CF5100]/10 rounded-full px-5 py-2.5 border-2 border-[#CF5100]/20">
+                      <p className="font-headline text-[#CF5100]" style={{ fontWeight: 800, fontSize: 'clamp(0.9375rem, 2.8vw, 1.125rem)' }}>
+                        {testimonial.highlight}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,23 +1,22 @@
 import { Card } from "./ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay@8.6.0";
-
-// ✅ imports corrigidos
-import testimonialMae from "../assets/testemunho-minhamae.avif";
-import testimonialMiguel from "../assets/testemunho-drmiguel.avif";
-import testimonialLarissa from "../assets/testemunho-larissa.avif";
-import testimonialCicilia from "../assets/testemunho-cicilia.avif";
-import testimonialLeo from "../assets/testemunho-leo.avif";
-import testimonialVivian from "../assets/testemunho-vivian.avif";
+import { Star, Quote } from "lucide-react";
+import testimonialMae from "figma:asset/63e588f46fed6ab6c063b9c26252740eec29ecf9.png";
+import testimonialMiguel from "figma:asset/b8b67df2f45f5deddbf4d707da08bd020c43c1b8.png";
+import testimonialLarissa from "figma:asset/5f0bc2231975b74e041c6527a14635cf2a5acd22.png";
+import testimonialCicilia from "figma:asset/6a43b357b166e1cdd62da67a2a9dc01e001d110d.png";
+import testimonialLeo from "figma:asset/2a93f961ff9dc1ef2bd108720e43166f9a27a56c.png";
+import testimonialVivian from "figma:asset/26d653f78e4d5ee231b56e8df59df1e6e217c0dd.png";
 
 export function CredentialsProof() {
   const testimonials = [
-    { image: testimonialMae, name: "Minha Mãe", alt: "Depoimento WhatsApp - Mãe" },
-    { image: testimonialMiguel, name: "Dr. Miguel T.", alt: "Depoimento WhatsApp - Miguel" },
-    { image: testimonialLarissa, name: "Larissa", alt: "Depoimento WhatsApp - Larissa" },
-    { image: testimonialCicilia, name: "Cicília Fernandes", alt: "Depoimento WhatsApp - Cicília" },
-    { image: testimonialLeo, name: "Léo Ozawa", alt: "Depoimento WhatsApp - Léo" },
-    { image: testimonialVivian, name: "Vivian Victor", alt: "Depoimento WhatsApp - Vivian" },
+    { image: testimonialMae, name: "Minha Mãe", alt: "Depoimento Instagram - Mãe", platform: "instagram" },
+    { image: testimonialMiguel, name: "Dr. Miguel T.", alt: "Depoimento WhatsApp - Miguel", platform: "whatsapp" },
+    { image: testimonialLarissa, name: "Larissa", alt: "Depoimento WhatsApp - Larissa", platform: "whatsapp" },
+    { image: testimonialCicilia, name: "Cicília Fernandes", alt: "Depoimento WhatsApp - Cicília", platform: "whatsapp" },
+    { image: testimonialLeo, name: "Léo Ozawa", alt: "Depoimento WhatsApp - Léo", platform: "whatsapp" },
+    { image: testimonialVivian, name: "Vivian Victor", alt: "Depoimento WhatsApp - Vivian", platform: "whatsapp" },
   ];
 
   const achados = [
@@ -37,34 +36,45 @@ export function CredentialsProof() {
           <h2 className="font-headline text-[#224236] mb-6" style={{ fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.5rem)' }}>
             Já ajudei minha mãe e mais de 800 alunos a realizarem sonhos de viagem.
           </h2>
+          
+
         </div>
 
         {/* Testimonials Carousel */}
         <div className="mb-16">
-          <h3 className="font-headline text-[#224236] mb-6 text-center" style={{ fontWeight: 700, fontSize: '1.75rem' }}>
+          <h3 className="font-headline text-[#224236] mb-8 text-center" style={{ fontWeight: 700, fontSize: 'clamp(1.5rem, 3.5vw, 1.75rem)' }}>
             O que os alunos dizem
           </h3>
-
+          
           {/* Video Testimonial - Renata */}
-          <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
-            <div className="bg-[#224236] rounded-2xl p-2 sm:p-3 shadow-lg">
-              <div className="bg-black rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/T4JbDAyX21c"
-                  title="Depoimento Renata - Mentoria Você Viaja"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+          <div className="max-w-5xl mx-auto mb-12 lg:mb-16">
+            <div className="relative group">
+              {/* Decorative background gradient */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#224236] via-[#CF5100] to-[#224236] rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity" />
+              
+              {/* Video Container with Border */}
+              <div className="relative bg-gradient-to-br from-[#224236] to-[#224236]/80 rounded-2xl p-4 shadow-2xl">
+                <div className="bg-black rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/T4JbDAyX21c"
+                    title="Depoimento Renata - Mentoria Você Viaja"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
               </div>
-            </div>
-            <div className="mt-3 sm:mt-4 text-center">
-              <p className="font-headline text-[#224236]" style={{ fontWeight: 700, fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
-                Renata
-              </p>
-              <p className="font-body text-[#CF5100] mt-1" style={{ fontWeight: 600, fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-                Vai continuar viajando sem se preocupar com os preços de passagens
-              </p>
+
+              {/* Video Info Below */}
+              <div className="relative mt-6 text-center bg-white rounded-2xl p-6 shadow-lg">
+                <Quote className="w-8 h-8 text-[#CF5100] mx-auto mb-3 opacity-50" />
+                <p className="font-headline text-[#224236]" style={{ fontWeight: 700, fontSize: 'clamp(1.125rem, 3vw, 1.375rem)' }}>
+                  Renata
+                </p>
+                <p className="font-body text-[#CF5100] mt-2" style={{ fontWeight: 600, fontSize: 'clamp(0.9375rem, 2.5vw, 1rem)' }}>
+                  Vai continuar viajando sem se preocupar com os preços de passagens
+                </p>
+              </div>
             </div>
           </div>
 
@@ -84,19 +94,53 @@ export function CredentialsProof() {
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
-                  <Card className="p-3 sm:p-4 bg-white rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.12)] border-0 h-full flex flex-col">
-                    <div className="flex-1 flex items-center justify-center overflow-hidden rounded-xl mb-2 sm:mb-3">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.alt}
-                        className="w-full h-auto object-contain"
-                        style={{ maxHeight: '300px' }}
-                      />
+                  <div className="group relative h-full p-2">
+                    {/* Decorative gradient background - more subtle */}
+                    <div className="absolute -inset-1 bg-gradient-to-br from-[#224236] via-[#CF5100]/40 to-[#224236] rounded-3xl opacity-0 group-hover:opacity-100 blur-lg transition-all duration-500" />
+                    
+                    <div className="relative bg-white rounded-2xl p-1 shadow-xl hover:shadow-2xl transition-all duration-300 h-full transform group-hover:-translate-y-2">
+                      {/* Inner border gradient */}
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#224236] via-[#CF5100]/30 to-[#224236] opacity-100" />
+                      
+                      <div className="relative bg-white rounded-[14px] p-4 sm:p-5 h-full flex flex-col">
+                        {/* Top badge */}
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-1">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <Star key={star} className="w-3.5 h-3.5 fill-[#CF5100] text-[#CF5100]" />
+                            ))}
+                          </div>
+                          {testimonial.platform === "instagram" ? (
+                            <div className="bg-gradient-to-tr from-[#FD5949] via-[#D6249F] to-[#285AEB] text-white px-2.5 py-1 rounded-full" style={{ fontSize: '0.6875rem', fontWeight: 600 }}>
+                              Instagram
+                            </div>
+                          ) : (
+                            <div className="bg-[#25D366]/10 text-[#25D366] px-2.5 py-1 rounded-full" style={{ fontSize: '0.6875rem', fontWeight: 600 }}>
+                              WhatsApp
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Screenshot */}
+                        <div className="flex-1 flex items-center justify-center mb-3 bg-gradient-to-br from-[#EDE7DF]/30 to-[#EDE7DF]/10 rounded-xl p-2 sm:p-3 overflow-hidden">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.alt}
+                            className="w-full h-auto object-contain rounded-lg shadow-sm"
+                            style={{ maxHeight: '300px' }}
+                          />
+                        </div>
+                        
+                        {/* Info section */}
+                        <div className="text-center pt-3 border-t-2 border-[#224236]/10">
+                          <Quote className="w-4 h-4 text-[#CF5100] mx-auto mb-1.5 opacity-40" />
+                          <p className="font-headline text-[#224236]" style={{ fontWeight: 700, fontSize: 'clamp(0.9375rem, 2.8vw, 1.125rem)' }}>
+                            {testimonial.name}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <p className="font-body text-[#224236] text-center" style={{ fontWeight: 600, fontSize: 'clamp(0.8125rem, 2.5vw, 0.9375rem)' }}>
-                      {testimonial.name}
-                    </p>
-                  </Card>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -104,6 +148,8 @@ export function CredentialsProof() {
             <CarouselNext className="hidden md:flex" />
           </Carousel>
         </div>
+
+
       </div>
     </section>
   );

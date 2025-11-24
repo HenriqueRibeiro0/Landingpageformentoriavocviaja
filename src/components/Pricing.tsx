@@ -50,6 +50,11 @@ export function Pricing() {
       icon: Check,
       title: "Passo a passo de emissão",
       description: "(nacional e internacional) com ferramentas que poupam tempo."
+    },
+    {
+      icon: Users,
+      title: "Suporte individual por 6 meses",
+      description: "tire dúvidas pontuais diretamente comigo pelo WhatsApp."
     }
   ];
 
@@ -158,17 +163,47 @@ export function Pricing() {
         <Card className="p-6 sm:p-8 md:p-12 bg-[#EDE7DF] rounded-2xl border-0 shadow-lg max-w-4xl mx-auto mb-8">
           <p className="font-body text-[#224236] text-center mb-6" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', lineHeight: '1.7' }}>
             Os "gurus" empilham isso tudo e chegam a{" "}
-            <span className="font-headline text-[#CF5100]" style={{ fontWeight: 700 }}>
-              ~R$ 3.000
+            <span className="relative inline-block">
+              <span className="font-headline text-[#224236]/40" style={{ fontWeight: 700, textDecoration: 'line-through', textDecorationThickness: '3px', textDecorationColor: '#CF5100' }}>
+                ~R$ 3.000
+              </span>
             </span>
             {" "}te entregando um conteúdo genérico que gravaram há 2 anos atrás.
           </p>
-          <p className="font-body text-[#224236] text-center mb-8" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', lineHeight: '1.7', fontWeight: 600 }}>
+          <p className="font-body text-[#224236] text-center mb-4" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', lineHeight: '1.7', fontWeight: 600 }}>
             Aqui, tudo que você precisa aprender está na mentoria, direto ao ponto, personalizado, por{" "}
-            <span className="font-headline text-[#224236]" style={{ fontWeight: 800 }}>
-              metade desse valor
+            <span className="relative inline-block mx-2">
+              {/* Hand-drawn circle effect */}
+              <svg 
+                className="absolute -inset-2 sm:-inset-3 w-auto h-auto pointer-events-none" 
+                viewBox="0 0 200 80" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 'calc(100% + 30px)', height: 'calc(100% + 25px)' }}
+              >
+                <ellipse 
+                  cx="100" 
+                  cy="40" 
+                  rx="95" 
+                  ry="35" 
+                  stroke="#CF5100" 
+                  strokeWidth="4" 
+                  fill="none"
+                  strokeLinecap="round"
+                  style={{ 
+                    transform: 'rotate(-3deg)',
+                    transformOrigin: 'center',
+                  }}
+                />
+              </svg>
+              <span className="relative font-mono text-[#224236]" style={{ fontWeight: 800, fontSize: 'clamp(1.75rem, 5vw, 2.5rem)' }}>
+                R$ 1.200
+              </span>
             </span>
             .
+          </p>
+          <p className="font-body text-[#224236]/60 text-center mb-8 italic" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
+            Não tem preço quebrado. Não quero fingir nada pra você.
           </p>
           
           <div className="text-center bg-white rounded-xl p-5 sm:p-6">

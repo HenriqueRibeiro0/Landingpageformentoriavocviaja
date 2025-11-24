@@ -1,16 +1,38 @@
-import flight1 from "../assets/VCP-LIS.avif";   // Lisboa
-import flight2 from "../assets/REC-FEN.avif";   // Fernando de Noronha
-import flight3 from "../assets/GRU-MAD.avif";   // Madrid
-import flight4 from "../assets/CGH-POA.avif";   // Gramado
-import flight5 from "../assets/NVT-SSA.avif";   // Salvador
-import flight6 from "../assets/GRU-MCO.avif";   // Orlando 
-import flight7 from "../assets/GRU-MIA.avif";   // Miami
-import { Plane, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import flight1 from "figma:asset/c708a1b4c250a8c7e091c006a2166a75c639c087.png";
+import flight2 from "figma:asset/74c6904520aa18e9eab95d505570cdaa48b36dfd.png";
+import flight3 from "figma:asset/36feb5c12866dc05000fc3c7955e9ad614e0c9ef.png";
+import flight4 from "figma:asset/781eec77322a53e57a7e378e1868923b26ab9efd.png";
+import flight5 from "figma:asset/5262252d8ad60df9f20cd93dfee5ecb628cbbf84.png";
+import flight6 from "figma:asset/0781a61e136ac839fbe7fde4667bac57be8ac5f8.png";
+import flight7 from "figma:asset/e9ca89132b72f3b30fd96bdd268c3b0cfffaaa63.png";
+import { Plane } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "./ui/carousel";
+import Autoplay from "embla-carousel-autoplay@8.6.0";
+import { useRef, useEffect, useState } from "react";
 
 export function FlightProofs() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [api, setApi] = useState<CarouselApi>();
+  const autoplayPlugin = useRef(
+    Autoplay({
+      delay: 7000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: false,
+    })
+  );
+
+  useEffect(() => {
+    if (!api) return;
+
+    const handleSelect = () => {
+      autoplayPlugin.current.reset();
+    };
+
+    api.on("select", handleSelect);
+
+    return () => {
+      api.off("select", handleSelect);
+    };
+  }, [api]);
 
   const flights = [
     {
@@ -64,34 +86,6 @@ export function FlightProofs() {
     }
   ];
 
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % flights.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, flights.length]);
-
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % flights.length);
-    setIsAutoPlaying(false);
-  };
-
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + flights.length) % flights.length);
-    setIsAutoPlaying(false);
-  };
-
-  const getVisibleFlights = () => {
-    const visible = [];
-    for (let i = 0; i < 3; i++) {
-      visible.push(flights[(currentIndex + i) % flights.length]);
-    }
-    return visible;
-  };
-
   return (
     <section className="py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,153 +110,99 @@ export function FlightProofs() {
           </div>
         </div>
 
-        <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            onClick={goToPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-[#EDE7DF] transition-colors hidden lg:flex items-center justify-center"
-            aria-label="Anterior"
+        {/* Desktop Carousel - 3 cards visible */}
+        <div className="hidden lg:block">
+          <Carousel 
+            className="w-full max-w-7xl mx-auto"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              autoplayPlugin.current,
+            ]}
+            setApi={setApi}
           >
-            <ChevronLeft className="text-[#224236]" size={24} />
-          </button>
-
-          <button
-            onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-[#EDE7DF] transition-colors hidden lg:flex items-center justify-center"
-            aria-label="Próximo"
-          >
-            <ChevronRight className="text-[#224236]" size={24} />
-          </button>
-
-          {/* Desktop - 3 cards */}
-          <div 
-            className="hidden lg:grid lg:grid-cols-3 gap-6 lg:gap-8"
-            onMouseEnter={() => setIsAutoPlaying(false)}
-            onMouseLeave={() => setIsAutoPlaying(true)}
-          >
-            {getVisibleFlights().map((flight, index) => (
-              <div key={`${currentIndex}-${index}`} className="animate-fade-in">
-                <div className="bg-[#EDE7DF] rounded-2xl p-4 hover:shadow-lg transition-shadow h-full flex flex-col">
-                  <div className="bg-white rounded-xl overflow-hidden mb-6 shadow-sm" style={{ height: '500px' }}>
-                    <img
-                      src={flight.image}
-                      alt={flight.alt}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <div className="px-2 text-center">
-                    <p className="font-headline text-[#224236] mb-1" style={{ fontWeight: 800, fontSize: '1.75rem', lineHeight: '1.2', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
-                      {flight.destination}
-                    </p>
-                    {flight.subtitle && (
-                      <p className="font-headline text-[#224236]/70 mb-3" style={{ fontWeight: 600, fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        {flight.subtitle}
+            <CarouselContent className="-ml-6">
+              {flights.map((flight, index) => (
+                <CarouselItem key={index} className="pl-6 lg:basis-1/3">
+                  <div className="bg-[#EDE7DF] rounded-2xl p-4 hover:shadow-lg transition-shadow h-full flex flex-col">
+                    <div className="bg-white rounded-xl overflow-hidden mb-6 shadow-sm" style={{ height: '500px' }}>
+                      <img
+                        src={flight.image}
+                        alt={flight.alt}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="px-2 text-center">
+                      <p className="font-headline text-[#224236] mb-1" style={{ fontWeight: 800, fontSize: '1.75rem', lineHeight: '1.2', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
+                        {flight.destination}
                       </p>
-                    )}
-                    <div className="mt-4 pt-4 border-t border-[#224236]/10">
-                      <p className="font-mono text-[#CF5100] mb-1" style={{ fontWeight: 600, fontSize: '1.5rem', lineHeight: '1' }}>
-                        {flight.points}
-                      </p>
-                      <p className="font-body text-[#224236]/60" style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        {flight.unit}
-                      </p>
+                      <div className="mt-4 pt-4 border-t border-[#224236]/10">
+                        <p className="font-mono text-[#CF5100] mb-1" style={{ fontWeight: 600, fontSize: '1.5rem', lineHeight: '1' }}>
+                          {flight.points}
+                        </p>
+                        <p className="font-body text-[#224236]/60" style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          {flight.unit}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden lg:flex" />
+            <CarouselNext className="hidden lg:flex" />
+          </Carousel>
+        </div>
 
-          {/* Mobile/Tablet - 1 card */}
-          <div className="lg:hidden">
-            <div className="flex justify-center">
-              <div className="w-full max-w-md">
-                <div className="bg-[#EDE7DF] rounded-2xl p-3 sm:p-4 hover:shadow-lg transition-shadow h-full flex flex-col">
-                  <div className="bg-white rounded-xl overflow-hidden mb-4 sm:mb-6 shadow-sm" style={{ minHeight: '320px', maxHeight: '450px' }}>
-                    <img
-                      src={flights[currentIndex].image}
-                      alt={flights[currentIndex].alt}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <div className="px-2 text-center">
-                    <p className="font-headline text-[#224236] mb-1" style={{ fontWeight: 800, fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', lineHeight: '1.2', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
-                      {flights[currentIndex].destination}
-                    </p>
-                    {flights[currentIndex].subtitle && (
-                      <p className="font-headline text-[#224236]/70 mb-3" style={{ fontWeight: 600, fontSize: 'clamp(0.75rem, 2.5vw, 0.875rem)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        {flights[currentIndex].subtitle}
+        {/* Mobile/Tablet Carousel - 1 card visible */}
+        <div className="lg:hidden">
+          <Carousel 
+            className="w-full max-w-md mx-auto"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              autoplayPlugin.current,
+            ]}
+            setApi={setApi}
+          >
+            <CarouselContent>
+              {flights.map((flight, index) => (
+                <CarouselItem key={index}>
+                  <div className="bg-[#EDE7DF] rounded-2xl p-3 sm:p-4 hover:shadow-lg transition-shadow h-full flex flex-col">
+                    <div className="bg-white rounded-xl overflow-hidden mb-4 sm:mb-6 shadow-sm" style={{ minHeight: '320px', maxHeight: '450px' }}>
+                      <img
+                        src={flight.image}
+                        alt={flight.alt}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="px-2 text-center">
+                      <p className="font-headline text-[#224236] mb-1" style={{ fontWeight: 800, fontSize: 'clamp(1.25rem, 4vw, 1.75rem)', lineHeight: '1.2', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
+                        {flight.destination}
                       </p>
-                    )}
-                    <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-[#224236]/10">
-                      <p className="font-mono text-[#CF5100] mb-1" style={{ fontWeight: 600, fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', lineHeight: '1' }}>
-                        {flights[currentIndex].points}
-                      </p>
-                      <p className="font-body text-[#224236]/60" style={{ fontSize: 'clamp(0.6875rem, 2vw, 0.75rem)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        {flights[currentIndex].unit}
-                      </p>
+                      <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-[#224236]/10">
+                        <p className="font-mono text-[#CF5100] mb-1" style={{ fontWeight: 600, fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', lineHeight: '1' }}>
+                          {flight.points}
+                        </p>
+                        <p className="font-body text-[#224236]/60" style={{ fontSize: 'clamp(0.6875rem, 2vw, 0.75rem)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          {flight.unit}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Navigation */}
-            <div className="flex justify-center gap-4 mt-6">
-              <button
-                onClick={goToPrev}
-                className="bg-white rounded-full p-2 shadow-lg hover:bg-[#EDE7DF] transition-colors flex items-center justify-center"
-                aria-label="Anterior"
-              >
-                <ChevronLeft className="text-[#224236]" size={24} />
-              </button>
-              <button
-                onClick={goToNext}
-                className="bg-white rounded-full p-2 shadow-lg hover:bg-[#EDE7DF] transition-colors flex items-center justify-center"
-                aria-label="Próximo"
-              >
-                <ChevronRight className="text-[#224236]" size={24} />
-              </button>
-            </div>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-8">
-            {flights.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setCurrentIndex(index);
-                  setIsAutoPlaying(false);
-                }}
-                className={`h-2 rounded-full transition-all ${
-                  index === currentIndex 
-                    ? 'w-8 bg-[#CF5100]' 
-                    : 'w-2 bg-[#224236]/20'
-                }`}
-                aria-label={`Ir para slide ${index + 1}`}
-              />
-            ))}
-          </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex" />
+            <CarouselNext className="hidden sm:flex" />
+          </Carousel>
         </div>
 
       </div>
-
-      <style>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
-        }
-      `}</style>
     </section>
   );
 }
