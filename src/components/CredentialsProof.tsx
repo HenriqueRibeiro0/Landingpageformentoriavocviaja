@@ -1,12 +1,14 @@
 import { Card } from "./ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay@8.6.0";
-import testimonialMae from "figma:asset/63e588f46fed6ab6c063b9c26252740eec29ecf9.png";
-import testimonialMiguel from "figma:asset/b8b67df2f45f5deddbf4d707da08bd020c43c1b8.png";
-import testimonialLarissa from "figma:asset/5f0bc2231975b74e041c6527a14635cf2a5acd22.png";
-import testimonialCicilia from "figma:asset/6a43b357b166e1cdd62da67a2a9dc01e001d110d.png";
-import testimonialLeo from "figma:asset/2a93f961ff9dc1ef2bd108720e43166f9a27a56c.png";
-import testimonialVivian from "figma:asset/26d653f78e4d5ee231b56e8df59df1e6e217c0dd.png";
+
+// ✅ imports corrigidos
+import testimonialMae from "../assets/testemunho-minhamae.avif";
+import testimonialMiguel from "../assets/testemunho-drmiguel.avif";
+import testimonialLarissa from "../assets/testemunho-larissa.avif";
+import testimonialCicilia from "../assets/testemunho-cicilia.avif";
+import testimonialLeo from "../assets/testemunho-leo.avif";
+import testimonialVivian from "../assets/testemunho-vivian.avif";
 
 export function CredentialsProof() {
   const testimonials = [
@@ -35,8 +37,6 @@ export function CredentialsProof() {
           <h2 className="font-headline text-[#224236] mb-6" style={{ fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 2.5rem)' }}>
             Já ajudei minha mãe e mais de 800 alunos a realizarem sonhos de viagem.
           </h2>
-          
-
         </div>
 
         {/* Testimonials Carousel */}
@@ -44,7 +44,7 @@ export function CredentialsProof() {
           <h3 className="font-headline text-[#224236] mb-6 text-center" style={{ fontWeight: 700, fontSize: '1.75rem' }}>
             O que os alunos dizem
           </h3>
-          
+
           {/* Video Testimonial - Renata */}
           <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
             <div className="bg-[#224236] rounded-2xl p-2 sm:p-3 shadow-lg">
@@ -104,8 +104,6 @@ export function CredentialsProof() {
             <CarouselNext className="hidden md:flex" />
           </Carousel>
         </div>
-
-
       </div>
     </section>
   );
