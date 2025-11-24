@@ -1,6 +1,6 @@
-import whatsapp1 from "figma:asset/d9f0a6d687abaf5249d70f7a125e12f18f160efd.png";
-import whatsapp2 from "figma:asset/97ba1bbc5d3a9b77fe665a538531fcee0d74724a.png";
-import whatsapp3 from "figma:asset/34cdbea8a66b496b6874a673688fb7d90a35b5e6.png";
+import whatsapp1 from "../assets/testemunho-rafa.avif";
+import whatsapp2 from "../assets/testemunho-ricardo.avif";
+import whatsapp3 from "../assets/testemunho-helio.avif";
 
 export function TestimonialsSection() {
   const testimonials = [
